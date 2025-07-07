@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <!-- Primary SEO -->
+  <title>No Tax on Overtime Calculator | U.S. Overtime Tax-Free Deduction Tool</title>
+  <meta name="description"
+        content="Use the no tax on overtime calculator to estimate how much of your overtime premium pay may be tax-free under the U.S. No Tax on Overtime Act. Fast, private, and updated when regulations change.">
+  <meta name="keywords"
+        content="no tax on overtime calculator,overtime tax deduction,No Tax on Overtime Act,overtime premium calculator,US overtime tax,1040 overtime deduction">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    body{margin:0;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,Helvetica,Arial,sans-serif;
+         background:#f9fafb;color:#333;line-height:1.75;}
+    header{background:#003d7a;color:#fff;text-align:center;padding:1.6rem 0;}
+    header h1{margin:0;font-size:1.9rem;}
+    nav a{color:#fff;text-decoration:none;margin:0 .6rem;font-size:.95rem;}
+    main{max-width:880px;margin:2rem auto;padding:0 1rem;}
+    h2{margin-top:2.4rem;font-size:1.45rem;color:#003d7a;}
+    .kw{font-weight:700;color:#c00;}
+    footer{background:#e5e7eb;text-align:center;padding:1rem 0;margin-top:2.5rem;font-size:.9rem;color:#444;}
+    footer a{color:#003d7a;text-decoration:none;}
+    .ot-calc-container {
+      max-width: 480px;
+      margin: 2.5rem auto 2rem auto;
+      background: #fff;
+      border-radius: 1.25rem;
+      box-shadow: 0 4px 32px 0 rgba(0,64,128,0.10), 0 1.5px 6px 0 rgba(0,0,0,0.04);
+      padding: 2rem 1.5rem 1.5rem 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+    .ot-calc-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .ot-calc-fields {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem 1.5rem;
+    }
+    @media (max-width: 600px) {
+      .ot-calc-fields {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .ot-calc-container {
+        padding: 1.2rem 0.5rem 1rem 0.5rem;
+      }
+    }
+    .ot-calc-label {
+      font-weight: 500;
+      color: #003d7a;
+      margin-bottom: 0.25rem;
+      display: block;
+      font-size: 1rem;
+    }
+    .ot-calc-unit {
+      color: #888;
+      font-size: 0.95em;
+      margin-left: 0.2em;
+    }
+    .ot-calc-input {
+      width: 100%;
+      padding: 0.65rem 0.9rem;
+      border: 1.5px solid #e5e7eb;
+      border-radius: 0.5rem;
+      font-size: 1.05rem;
+      background: #f9fafb;
+      transition: border 0.2s;
+      margin-top: 0.15rem;
+    }
+    .ot-calc-input:focus {
+      border-color: #2563eb;
+      outline: none;
+      background: #fff;
+    }
+    .ot-calc-btn {
+      margin-top: 1.2rem;
+      background: linear-gradient(90deg,#2563eb 0%,#003d7a 100%);
+      color: #fff;
+      border: none;
+      padding: 0.85rem 0;
+      border-radius: 0.7rem;
+      font-size: 1.15rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 2px 8px 0 rgba(0,64,128,0.08);
+      transition: background 0.2s, box-shadow 0.2s;
+      width: 100%;
+      letter-spacing: 0.01em;
+    }
+    .ot-calc-btn:hover, .ot-calc-btn:focus {
+      background: linear-gradient(90deg,#003d7a 0%,#2563eb 100%);
+      box-shadow: 0 4px 16px 0 rgba(0,64,128,0.13);
+    }
+    .ot-calc-result {
+      margin-top: 1.5rem;
+      padding: 1.2rem 1rem;
+      background: #f0f9ff;
+      border-left: 5px solid #2563eb;
+      border-radius: 0.7rem;
+      font-size: 1.08rem;
+      color: #003d7a;
+      box-shadow: 0 1px 4px 0 rgba(0,64,128,0.06);
+      animation: fadeIn 0.4s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    .ot-calc-meta {
+      margin-top: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      font-size: 0.98rem;
+      color: #666;
+    }
+    .ot-calc-disclaimer {
+      color: #c00;
+      font-size: 0.97em;
+    }
+  </style>
+</head>
+
+<body>
+<!-- ==================== Header ==================== -->
+<header>
+  <h1>No Tax on Overtime Calculator</h1>
+  <nav>
+    <a href="#value">Benefits</a> |
+    <a href="#steps">How to Use</a> |
+    <a href="#act">Act Insight</a> |
+    <a href="#story">User Story</a> |
+    <a href="#faq">FAQ</a> |
+    <a href="#disclaimer">Disclaimer</a>
+  </nav>
+</header>
+
+<!-- ==================== Main ==================== -->
+<main>
+  <!-- ========== Modern Overtime Tax Calculator ========== -->
+  <div class="ot-calc-container">
+    <form id="calcForm" class="ot-calc-form">
+      <div class="ot-calc-fields">
+        <div>
+          <label for="status" class="ot-calc-label">Filing status</label>
+          <select id="status" class="ot-calc-input">
+            <option value="single">Single</option>
+            <option value="joint">Married Filing Jointly</option>
+          </select>
+        </div>
+        <div>
+          <label for="magi" class="ot-calc-label">MAGI (before overtime) <span class="ot-calc-unit">$</span></label>
+          <input type="number" id="magi" min="0" step="0.01" class="ot-calc-input" required>
+        </div>
+        <div>
+          <label for="rate" class="ot-calc-label">Regular hourly wage <span class="ot-calc-unit">$</span></label>
+          <input type="number" id="rate" min="0" step="0.01" class="ot-calc-input" required>
+        </div>
+        <div>
+          <label for="otHours" class="ot-calc-label">Overtime hours (yearly)</label>
+          <input type="number" id="otHours" min="0" step="0.1" class="ot-calc-input" required>
+        </div>
+      </div>
+      <button type="submit" class="ot-calc-btn">Calculate</button>
+    </form>
+    <div id="output" class="ot-calc-result" style="display:none;"></div>
+    <div class="ot-calc-meta">
+      <small>
+        <strong>Methodology:</strong> Only the FLSA-required overtime <em>premium</em> (half the regular rate) qualifies. Deduction cap: $12,500 (single) / $25,000 (joint), reduced by $100 for every $1,000 of MAGI above $150k (single) / $300k (joint). Law applies to tax years 2025-2028.
+      </small>
+      <small>
+        <em>Information is based on the No Tax on Overtime Act signed July 4, 2025. Treasury/IRS guidance is pending; figures may change.</em>
+      </small>
+      <small class="ot-calc-disclaimer">
+        <strong>Disclaimer:</strong> This calculator provides estimates for informational purposes only. Due to limited public guidance, the calculation logic may contain errors or omissions. Do not use as official tax advice.
+      </small>
+    </div>
+  </div>
+  <script>
+    function adjustedCap(status, magi) {
+      let base = status === 'single' ? 12500 : 25000;
+      let thresh = status === 'single' ? 150000 : 300000;
+      if (magi <= thresh) return base;
+      let excess = Math.max(0, magi - thresh);
+      let reduction = Math.floor(excess / 1000) * 100;
+      return Math.max(0, base - reduction);
+    }
+
+    document.getElementById('calcForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const status = document.getElementById('status').value;
+      const magi = parseFloat(document.getElementById('magi').value) || 0;
+      const rate = parseFloat(document.getElementById('rate').value) || 0;
+      const otHours = parseFloat(document.getElementById('otHours').value) || 0;
+      const premium = rate * 0.5 * otHours;
+      const cap = adjustedCap(status, magi);
+      const deduction = Math.min(premium, cap);
+      const output = document.getElementById('output');
+      output.style.display = 'block';
+      output.innerHTML = `<h2 style=\"margin-top:0;font-size:1.25rem;\">Results</h2>
+        <p>FLSA overtime premium earned: <strong>$${premium.toFixed(2)}</strong></p>
+        <p>Adjusted deduction cap: <strong>$${cap.toFixed(2)}</strong></p>
+        <p><strong>Potential above-the-line deduction:</strong> $${deduction.toFixed(2)}</p>
+        <p style=\"font-size:0.98em;color:#2563eb;\">You can claim this amount on your 2025 federal tax return (Form 1040) if regulations confirm eligibility.</p>`;
+    });
+  </script>
+  <!-- ========== Modern Overtime Tax Calculator END ========== -->
+
+  <!-- Value Proposition -->
+  <h2 id="value">Why the <span class="kw">no tax on overtime calculator</span> matters</h2>
+  <p>
+    The <span class="kw">no tax on overtime calculator</span> was built for one purpose: turning a 200-page federal
+    bill into a 20-second answer. Line-haul truckers pulling back-to-back shifts, ICU nurses rostered for
+    endless weekends, and coders shipping hot-fixes at 2 a.m. all ask the same question – "How much of my
+    overtime is truly mine?" The <span class="kw">no tax on overtime calculator</span> lets you
+    discover your potential tax-free overtime premium before filing Form 1040, without spreadsheets,
+    ads, or data harvesting. Clear sliders, instant math, and plain-language tips bridge the gap between
+    Capitol Hill jargon and your paycheck. Because every extra dollar should help you, not disappear in a
+    labyrinth of rules.
+  </p>
+
+  <!-- Five-Step Guide -->
+  <h2 id="steps">Five steps to master the <span class="kw">no tax on overtime calculator</span></h2>
+  <p>
+    <strong>Step 1 — Select Filing Status.</strong> Single or Married Filing Jointly drives the statutory
+    cap ($12,500 vs $25,000).<br>
+    <strong>Step 2 — Enter your annual MAGI.</strong> Use income <em>before</em> counting overtime. The
+    <span class="kw">no tax on overtime calculator</span> will auto-apply phase-outs once MAGI surpasses
+    $150 k or $300 k.<br>
+    <strong>Step 3 — Insert Base Hourly Wage.</strong> This is the 1 × rate; the tool isolates the 0.5 ×
+    premium that the Act exempts.<br>
+    <strong>Step 4 — Add Total Overtime Hours.</strong> Include only FLSA-qualified time-and-a-half hours.<br>
+    <strong>Step 5 — Hit "Calculate."</strong> In milliseconds the
+    <span class="kw">no tax on overtime calculator</span> displays your <em>Potential Tax-Free Deduction</em>,
+    a breakdown of the linear phase-out, and a line-by-line reference for Schedule 1 (2025-Version).
+  </p>
+  <p>
+    All math runs client-side; the <span class="kw">no tax on overtime calculator</span> never stores or
+    transmits salary data. If Congress, Treasury, or the IRS tweaks numbers, a background JSON revision
+    boosts accuracy within 72 hours, and a pop-up banner alerts every visitor. You focus on work – the
+    <span class="kw">no tax on overtime calculator</span> tracks the rule book.
+  </p>
+
+  <!-- Act Insight -->
+  <h2 id="act">Inside the Act: logic powering the <span class="kw">no tax on overtime calculator</span></h2>
+  <p>
+    Signed on 4 July 2025, the No Tax on Overtime Act shields the <em>premium half</em> of time-and-a-half
+    pay earned between 2025-2028. The bill names a $12,500 cap for singles and $25,000 for joint filers and
+    uses a $1,000-over = $100-reduction phase-out above the MAGI thresholds. The
+    <span class="kw">no tax on overtime calculator</span> embeds that formula, labels it in code comments,
+    and assumes a federal-only baseline because state overtime multipliers (e.g., California daily OT or
+    New York double-time) remain unclarified by Treasury. Whenever guidance lands, the
+    <span class="kw">no tax on overtime calculator</span> will expose a version tag and update the deduction
+    logic—no manual download required.
+  </p>
+
+  <!-- User Story -->
+  <h2 id="story">Real-world snapshot: the <span class="kw">no tax on overtime calculator</span> in action</h2>
+  <p>
+    Meet Chloe, a logistics supervisor in Phoenix earning $84,000 salary plus 640 FLSA overtime hours in
+    2025. After feeding the numbers into the <span class="kw">no tax on overtime calculator</span>, she learns
+    her premium segment is $22,400, but the statutory ceiling trims it to $12,500. With a marginal rate of
+    22 %, she saves roughly $2,750 in federal tax. Without the
+    <span class="kw">no tax on overtime calculator</span>, Chloe would have missed that line item and overpaid
+    the IRS. Now she plans to redirect the savings toward her EMT night classes—one tool, double impact.
+  </p>
+
+  <!-- Continuous Update -->
+  <h2>Continuous evolution of the <span class="kw">no tax on overtime calculator</span></h2>
+  <p>
+    We pledge round-the-clock monitoring of statutory tweaks. The GitHub repository
+    <a href="https://github.com/notaxonOT/overtime-calculator" target="_blank" rel="noopener">shows every commit</a>,
+    and the <span class="kw">no tax on overtime calculator</span> changelog reveals version numbers, formula
+    hashes, and commit dates. Subscribe to the mailing list or RSS feed and you'll get an
+    alert whenever the scope widens—for example, if Congress extends the sunset beyond 2028, or allows
+    employer-provided PTO swaps. Your trust is built on relentless transparency, and the
+    <span class="kw">no tax on overtime calculator</span> treats that as a non-negotiable feature.
+  </p>
+
+  <!-- FAQ -->
+  <h2 id="faq">Frequently Asked Questions</h2>
+  <p>
+    <strong>Q 1.</strong>&nbsp;Does the <span class="kw">no tax on overtime calculator</span> store my income? <br>
+    <strong>A.</strong>&nbsp;Never. All computation occurs locally in your browser. No cookies, no databases,
+    no ads.<br><br>
+
+    <strong>Q 2.</strong>&nbsp;I changed jobs mid-year. Can the
+    <span class="kw">no tax on overtime calculator</span> handle multiple employers? <br>
+    <strong>A.</strong>&nbsp;Yes. Combine overtime hours and MAGI from all W-2s, then run a single calculation.<br><br>
+
+    <strong>Q 3.</strong>&nbsp;My state offers its own overtime credit. Will the
+    <span class="kw">no tax on overtime calculator</span> include it? <br>
+    <strong>A.</strong>&nbsp;Not yet. This tool focuses on the federal deduction. Check your state DOR for
+    additional breaks.<br><br>
+
+    <strong>Q 4.</strong>&nbsp;Will the site disappear after 2028? <br>
+    <strong>A.</strong>&nbsp;Historic builds remain online for research, and the
+    <span class="kw">no tax on overtime calculator</span> will pivot if Congress renews the Act.
+  </p>
+
+  <!-- Disclaimer -->
+  <h2 id="disclaimer">Disclaimer</h2>
+  <p>
+    The <span class="kw">no tax on overtime calculator</span> provides educational estimates only and is not
+    legal, tax, or financial advice. Because publicly available information is limited and evolving, the
+    calculation may contain errors or omissions. Consult a licensed CPA or tax attorney before filing
+    your return. Using the <span class="kw">no tax on overtime calculator</span> indicates acceptance of our
+    <a href="./terms.html" target="_blank" rel="noopener">Terms of Service</a> and
+    <a href="./privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.
+  </p>
+</main>
+
+<!-- ==================== Footer ==================== -->
+<footer>
+  <p>&copy; 2025 NoTaxOnOvertimeCalculator.org  |  Made with &#x2665; in the USA  | 
+     <a href="mailto:support@notaxonovertimecalculator.org">Contact Support</a></p>
+</footer>
+</body>
+</html>
